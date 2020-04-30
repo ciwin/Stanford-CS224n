@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# My solutions had some errors, so I included the code from:
+# https://github.com/LooperXX/CS224n-Resource
 
 import numpy as np
 import random
@@ -62,14 +64,17 @@ def naiveSoftmaxLossAndGradient(
     ### This numerically stable implementation helps you avoid issues pertaining
     ### to integer overflow. 
 
+    '''
     scoreVector = np.matmul(outsideVectors, centerWordVec)
     y_o         = softmax(scoreVector[outsideWordIdx])
     loss        = - np.log(y_o)
 
     x             = np.matmul(centerWordVec, np.transpose(outsideVectors))
     x_s           = softmax(x)
-    x_w           = np.transpose(x_s) * outsideVectors
-    x_sum         = np.sum(x_w, axis=1)
+#    x_w           = np.transpose(x_s) * outsideVectors
+    x_w           = x_s.reshape(outsideVectors.shape[0],1) * outsideVectors
+#    x_sum         = np.sum(x_w, axis=1)
+    x_sum         = np.sum(x_w, axis=0)
     gradCenterVec = x_sum - outsideVectors[outsideWordIdx]
 
     x = np.dot(centerWordVec, outsideVectors[outsideWordIdx])
@@ -78,8 +83,16 @@ def naiveSoftmaxLossAndGradient(
     gradOutside = x_w - centerWordVec
     gradOutsideVecs = np.zeros(outsideVectors.shape)
     gradOutsideVecs[outsideWordIdx] = gradOutside
+    '''
+    y_hat = softmax(np.dot(centerWordVec, outsideVectors.T))
+    delta = y_hat.copy()
+    delta[outsideWordIdx] -= 1
 
-    ### END YOUR CODE
+    loss = -np.log(y_hat)[outsideWordIdx]
+    gradCenterVec = np.dot(delta, outsideVectors)
+    gradOutsideVecs = np.dot(delta[:, np.newaxis], centerWordVec[np.newaxis, :])
+
+### END YOUR CODE
 
     return loss, gradCenterVec, gradOutsideVecs
 
@@ -125,7 +138,7 @@ def negSamplingLossAndGradient(
     ### YOUR CODE HERE (~10 Lines)
 
     ### Please use your implementation of sigmoid in here.
-
+    '''
     x1 = - np.log(sigmoid(np.dot(centerWordVec, outsideVectors[outsideWordIdx])))
     x2 = 0
     for k in range(K):
@@ -138,7 +151,7 @@ def negSamplingLossAndGradient(
         x2 += (1.0 - sigmoid(-1.0 * (np.dot(centerWordVec, outsideVectors[k])))) * outsideVectors[outsideWordIdx]
     gradCenterVec = x1 + x2
 
-    gradOutside = - (1.0 - sigmoid(np.dot(centerWordVec, outsideVectors[outsideWordIdx])) * centerWordVec]
+    gradOutside = - (1.0 - sigmoid(np.dot(centerWordVec, outsideVectors[outsideWordIdx]))) * centerWordVec
 
     gradNegativeVec = 0
     for k in range(K):
@@ -148,6 +161,24 @@ def negSamplingLossAndGradient(
     gradOutsideVecs[outsideWordIdx] = gradOutside
     for k in range (K):
         gradOutsideVecs[k] += gradNegativeVec
+    '''
+
+    score = np.dot(outsideVectors[indices], centerWordVec)
+    score[1:] *= -1
+    score = sigmoid(score)
+    loss = -np.sum(np.log(score))
+
+    score = 1 - score
+    score[0] *= -1
+    gradCenterVec = np.dot(score.reshape([1, -1]), outsideVectors[indices]).squeeze()
+
+    gradOutsideVecs = np.zeros_like(outsideVectors)
+    _gradOutsideVecs = np.dot(score.reshape([-1, 1]), centerWordVec.reshape([1, -1]))
+    np.add.at(
+        gradOutsideVecs,
+        indices,
+        _gradOutsideVecs,
+    )
 
     ### END YOUR CODE
 
@@ -194,6 +225,29 @@ def skipgram(currentCenterWord, windowSize, outsideWords, word2Ind,
     gradOutsideVectors = np.zeros(outsideVectors.shape)
 
     ### YOUR CODE HERE (~8 Lines)
+    '''
+    i_centerWord = word2Ind[currentCenterWord]
+    centerWordVec = centerWordVectors[i_centerWord]
+
+    for w in outsideWords:
+        l, gradCV, gradOV = word2vecLossAndGradient(centerWordVec, word2Ind[w],
+                                                    outsideVectors, dataset)
+        loss += l
+        gradCenterVecs += gradCV
+        gradOutsideVectors += gradOV
+    '''
+
+    currentCenterWordIdx = word2Ind[currentCenterWord]
+    centerWordVec = centerWordVectors[currentCenterWordIdx]
+
+    for outsideWord in outsideWords:
+        outsideWordIdx = word2Ind[outsideWord]
+        (l, gradCenter, gradOutside) = word2vecLossAndGradient(
+            centerWordVec, outsideWordIdx, outsideVectors, dataset)
+        loss += l
+        gradCenterVecs[currentCenterWordIdx] += gradCenter
+        gradOutsideVectors += gradOutside
+
 
     ### END YOUR CODE
     

@@ -11,11 +11,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="word2vec.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="word2vec.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/word2vec.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-73">
-              <caret line="135" column="3" selection-start-line="135" selection-start-column="3" selection-end-line="135" selection-end-column="3" />
+            <state relative-caret-position="210">
+              <caret line="190" lean-forward="true" selection-start-line="187" selection-end-line="190" />
               <folding>
                 <element signature="e#23#41#0" expanded="true" />
               </folding>
@@ -58,18 +58,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sgd.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="sgd.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sgd.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1377" />
+            <state relative-caret-position="241">
+              <caret line="91" lean-forward="true" selection-start-line="91" selection-end-line="91" />
+              <folding>
+                <element signature="e#107#120#0" expanded="true" />
+              </folding>
+            </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="run.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/run.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="29" lean-forward="true" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
+            <state relative-caret-position="216">
+              <caret line="39" column="17" selection-start-line="39" selection-start-column="14" selection-end-line="39" selection-end-column="17" />
               <folding>
                 <element signature="e#23#36#0" expanded="true" />
               </folding>
@@ -82,19 +87,21 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>dataset</find>
+      <find>sgd</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/word2vec.py" />
+        <option value="$PROJECT_DIR$/sgd.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="201" />
-    <option name="y" value="104" />
-    <option name="width" value="1223" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="286" />
+    <option name="y" value="102" />
+    <option name="width" value="1136" />
     <option name="height" value="765" />
   </component>
   <component name="ProjectView">
@@ -136,7 +143,25 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.word2vec">
+  <component name="RunManager" selected="Python.sgd">
+    <configuration name="sgd" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="a2" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sgd.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="word2vec" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="a2" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -172,9 +197,11 @@
     <list>
       <item itemvalue="Python tests.py.test in word2vec.py" />
       <item itemvalue="Python.word2vec" />
+      <item itemvalue="Python.sgd" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.sgd" />
         <item itemvalue="Python.word2vec" />
         <item itemvalue="Python tests.py.test in word2vec.py" />
       </list>
@@ -211,13 +238,13 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="201" y="104" width="1223" height="765" extended-state="0" />
+    <frame x="286" y="102" width="1136" height="765" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24958402" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2690583" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.24401198" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.24401198" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -248,7 +275,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sgd.py">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#107#120#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/run.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -283,21 +316,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sgd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1377" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="29" lean-forward="true" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
-          <folding>
-            <element signature="e#23#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils/treebank.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -307,10 +325,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/word2vec.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-73">
-          <caret line="135" column="3" selection-start-line="135" selection-start-column="3" selection-end-line="135" selection-end-column="3" />
+        <state relative-caret-position="210">
+          <caret line="190" lean-forward="true" selection-start-line="187" selection-end-line="190" />
           <folding>
             <element signature="e#23#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="39" column="17" selection-start-line="39" selection-start-column="14" selection-end-line="39" selection-end-column="17" />
+          <folding>
+            <element signature="e#23#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sgd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="91" lean-forward="true" selection-start-line="91" selection-end-line="91" />
+          <folding>
+            <element signature="e#107#120#0" expanded="true" />
           </folding>
         </state>
       </provider>
