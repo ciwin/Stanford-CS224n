@@ -11,11 +11,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="parser_model.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="parser_model.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/parser_model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-145">
-              <caret line="50" column="27" selection-start-line="50" selection-start-column="27" selection-end-line="50" selection-end-column="38" />
+            <state relative-caret-position="305">
+              <caret line="82" column="78" lean-forward="true" selection-start-line="82" selection-start-column="78" selection-end-line="82" selection-end-column="78" />
               <folding>
                 <element signature="e#223#238#0" expanded="true" />
               </folding>
@@ -30,11 +30,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="parser_transitions.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="parser_transitions.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/parser_transitions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
-              <caret line="143" selection-start-line="143" selection-end-line="143" />
+            <state relative-caret-position="207">
+              <caret line="129" column="45" lean-forward="true" selection-start-line="129" selection-start-column="45" selection-end-line="129" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -72,6 +72,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/parser_transitions.py" />
+        <option value="$PROJECT_DIR$/parser_model.py" />
       </list>
     </option>
   </component>
@@ -174,16 +175,6 @@
         <state relative-caret-position="-1502" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/parser_model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-145">
-          <caret line="50" column="27" selection-start-line="50" selection-start-column="27" selection-end-line="50" selection-end-column="38" />
-          <folding>
-            <element signature="e#223#238#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils/general_utils.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -202,8 +193,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/parser_transitions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="143" selection-start-line="143" selection-end-line="143" />
+        <state relative-caret-position="207">
+          <caret line="129" column="45" lean-forward="true" selection-start-line="129" selection-start-column="45" selection-end-line="129" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parser_model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="82" column="78" lean-forward="true" selection-start-line="82" selection-start-column="78" selection-end-line="82" selection-end-column="78" />
+          <folding>
+            <element signature="e#223#238#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

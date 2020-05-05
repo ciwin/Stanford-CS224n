@@ -71,8 +71,20 @@ class ParserModel(nn.Module):
         ###     Initialization: https://pytorch.org/docs/stable/nn.init.html
         ###     Dropout: https://pytorch.org/docs/stable/nn.html#dropout-layers
 
+        self.embed_to_hidden_weight = nn.Parameter(torch.empty(n_features, self.embed_size, hidden_size))
+        self.embed_to_hidden_bias   = nn.Parameter(torch.empty(1, hidden_size))
 
+        nn.init.xavier_uniform_(self.embed_to_hidden_weight, gain=nn.init.calculate_gain('relu'))
+        nn.init.uniform_(self.embed_to_hidden_bias)
 
+        self.dropout = nn.Dropout(p=0.5)
+
+        self.hidden_to_logits_weight = nn.Parameter(torch.empty(hidden_size, n_classes))
+        self.hidden_to_logits_bias   = nn.Parameter(torch.empty(1, n_classes))
+
+        nn.init.xavier_uniform_(self.hidden_to_logits_weight, gain=nn.init.calculate_gain('relu'))
+        w = torch.empty(1, n_classes)
+        nn.init.uniform_(self.hidden_to_logits_bias)
 
         ### END YOUR CODE
 
