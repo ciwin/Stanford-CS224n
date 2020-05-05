@@ -84,6 +84,7 @@ def naiveSoftmaxLossAndGradient(
     gradOutsideVecs = np.zeros(outsideVectors.shape)
     gradOutsideVecs[outsideWordIdx] = gradOutside
     '''
+
     y_hat = softmax(np.dot(centerWordVec, outsideVectors.T))
     delta = y_hat.copy()
     delta[outsideWordIdx] -= 1
