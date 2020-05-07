@@ -71,13 +71,13 @@ class ParserModel(nn.Module):
         ###     Initialization: https://pytorch.org/docs/stable/nn.init.html
         ###     Dropout: https://pytorch.org/docs/stable/nn.html#dropout-layers
 
-        self.embed_to_hidden_weight = nn.Parameter(torch.empty(n_features, self.embed_size, hidden_size))
+        self.embed_to_hidden_weight = nn.Parameter(torch.empty(n_features * self.embed_size, hidden_size))
         self.embed_to_hidden_bias   = nn.Parameter(torch.empty(1, hidden_size))
 
         nn.init.xavier_uniform_(self.embed_to_hidden_weight, gain=nn.init.calculate_gain('relu'))
         nn.init.uniform_(self.embed_to_hidden_bias)
 
-        self.dropout = nn.Dropout(p=0.5)
+        self.dropout = nn.Dropout(p=self.dropout_prob)
 
         self.hidden_to_logits_weight = nn.Parameter(torch.empty(hidden_size, n_classes))
         self.hidden_to_logits_bias   = nn.Parameter(torch.empty(1, n_classes))
@@ -116,7 +116,14 @@ class ParserModel(nn.Module):
         ###     Gather: https://pytorch.org/docs/stable/torch.html#torch.gather
         ###     View: https://pytorch.org/docs/stable/tensors.html#torch.Tensor.view
 
-
+        x = torch.empty(0)
+        for w_i in w:
+            feature_tensor = torch.empty(0)
+            for feat in w_i:
+                embed = self.embeddings[feat]
+                feature_tensor = torch.cat((feature_tensor, embed), 0)
+            x = torch.cat((x, feature_tensor), 0)
+        x = x.view (-1, self.n_features * self.embed_size)
 
         ### END YOUR CODE
         return x
@@ -153,6 +160,12 @@ class ParserModel(nn.Module):
         ###     Matrix product: https://pytorch.org/docs/stable/torch.html#torch.matmul
         ###     ReLU: https://pytorch.org/docs/stable/nn.html?highlight=relu#torch.nn.functional.relu
 
+        x = self.embedding_lookup(w)
+        mul = torch.matmul(x, self.embed_to_hidden_weight)
+        mul_bias = mul + self.embed_to_hidden_bias
+        h = F.relu(mul_bias)
+        h = self.dropout.forward(h)
+        logits = torch.matmul(h, self.hidden_to_logits_weight) + self.hidden_to_logits_bias
 
         ### END YOUR CODE
         return logits
