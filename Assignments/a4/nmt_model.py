@@ -77,9 +77,8 @@ class NMT(nn.Module):
         ###     Dropout Layer:
         ###         https://pytorch.org/docs/stable/nn.html#torch.nn.Dropout
 
-        self.encoder = torch.nn.LSTM (input_size = embed_size, hidden_size=hidden_size, num_layers=1,
-                                      bias=True, bidirectional=True)
-        self.decoder = torch.nn.LSTMCell (input_size = embed_size, hidden_size=hidden_size, bias=True)
+        self.encoder = torch.nn.LSTM (input_size = embed_size, hidden_size=hidden_size, bias=True, bidirectional=True)
+        self.decoder = torch.nn.LSTMCell (input_size = embed_size+hidden_size, hidden_size=hidden_size, bias=True)
         self.h_projection = torch.nn.Linear(in_features=2*hidden_size, out_features=hidden_size, bias=False)
         self.c_projection = torch.nn.Linear(in_features=2*hidden_size, out_features=hidden_size, bias=False)
         self.att_projection = torch.nn.Linear(in_features=2*hidden_size, out_features=hidden_size, bias=False)
@@ -178,12 +177,19 @@ class NMT(nn.Module):
         ###     Tensor Permute:
         ###         https://pytorch.org/docs/stable/tensors.html#torch.Tensor.permute
 
-        X = ModelEmbeddings.source(source_padded)
+        X = self.model_embeddings.source(source_padded)
         X = torch.nn.utils.rnn.pack_padded_sequence(X, source_lengths)
         enc_hiddens, (last_hidden, last_cell) = self.encoder(X)
-        enc_hiddens = torch.nn.utils.rnn.pad_packed_sequence (enc_hiddens)
-        enc_hiddens = enc_hiddens.view (-1, source_padded.shape[0], 2*self.hidden_size)
+        (enc_hiddens, _lengths) = torch.nn.utils.rnn.pad_packed_sequence (enc_hiddens, padding_value=self.vocab.src["<pad>"])
+        enc_hiddens = enc_hiddens.permute (1, 0, 2)
 
+        last_hidden_cat = torch.cat((last_hidden[0], last_hidden[1]), dim=1)
+        init_decoder_hidden = self.h_projection(last_hidden_cat)
+
+        last_cell_cat = torch.cat((last_cell[0], last_cell[1]), dim=1)
+        init_decoder_cell = self.c_projection(last_cell_cat)
+
+        dec_init_state = (init_decoder_hidden, init_decoder_cell)
 
         ### END YOUR CODE
 
