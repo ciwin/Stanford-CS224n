@@ -35,8 +35,8 @@
       <file leaf-file-name="nmt_model.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/nmt_model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="719">
-              <caret line="272" lean-forward="true" selection-start-line="272" selection-end-line="272" />
+            <state relative-caret-position="529">
+              <caret line="374" lean-forward="true" selection-start-line="374" selection-end-line="374" />
               <folding>
                 <element signature="e#208#242#0" expanded="true" />
               </folding>
@@ -50,6 +50,8 @@
     <findStrings>
       <find>last_hidden</find>
       <find>enc_hiddens_proj</find>
+      <find>softmax</find>
+      <find>torch.cat</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -63,8 +65,8 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="1440" />
-    <option name="y" value="26" />
-    <option name="width" value="1100" />
+    <option name="y" value="24" />
+    <option name="width" value="947" />
     <option name="height" value="1165" />
   </component>
   <component name="ProjectView">
@@ -115,7 +117,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1440" y="26" width="1100" height="1165" extended-state="0" />
+    <frame x="1440" y="24" width="947" height="1165" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.20205128" />
@@ -160,8 +162,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/nmt_model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="719">
-          <caret line="272" lean-forward="true" selection-start-line="272" selection-end-line="272" />
+        <state relative-caret-position="529">
+          <caret line="374" lean-forward="true" selection-start-line="374" selection-end-line="374" />
           <folding>
             <element signature="e#208#242#0" expanded="true" />
           </folding>

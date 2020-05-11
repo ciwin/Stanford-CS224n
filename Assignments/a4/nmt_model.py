@@ -265,7 +265,6 @@ class NMT(nn.Module):
         for Y_t in torch.split(Y, split_size_or_sections=1, dim=0):
             Y_t = torch.squeeze(Y_t, dim=0)
             Ybar_t = torch.cat((Y_t, o_prev), dim=1)
-            #dec_state = self.decoder(Ybar_t, dec_state)
             dec_state, o_t, e_t =self.step(Ybar_t, dec_state, enc_hiddens, enc_hiddens_proj, enc_masks)
             combined_outputs.append(o_t)
             o_prev = o_t
@@ -328,6 +327,10 @@ class NMT(nn.Module):
         ###     Tensor Squeeze:
         ###         https://pytorch.org/docs/stable/torch.html#torch.squeeze
 
+        dec_state  = self.decoder(Ybar_t, dec_state)
+        dec_hidden = dec_state[0]
+        dec_cell   = dec_state[1]
+        e_t = torch.squeeze(torch.bmm(enc_hiddens_proj, torch.unsqueeze(dec_hidden, dim=2)), dim=2)
 
         ### END YOUR CODE
 
@@ -362,6 +365,13 @@ class NMT(nn.Module):
         ###     Tanh:
         ###         https://pytorch.org/docs/stable/torch.html#torch.tanh
 
+        softmax = nn.Softmax(dim=1)
+        alpha_t = softmax(e_t)
+        a_t = torch.squeeze(torch.bmm(torch.unsqueeze(alpha_t, dim=1), enc_hiddens), dim=1)
+        U_t = torch.cat((dec_hidden, a_t), dim=1)
+        V_t =  self.combined_output_projection(U_t)
+        O_t = torch.tanh(V_t)
+        O_t = self.dropout.forward(O_t)
 
         ### END YOUR CODE
 
